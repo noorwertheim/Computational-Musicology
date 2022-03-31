@@ -15,7 +15,7 @@ remotes::install_github("rstudio/bslib")
 library(gridExtra)
 ```
 
-### Background
+### <b>Introduction</b>: Disco and Techno Music
 
 <b>Corpus</b>
 
@@ -40,6 +40,10 @@ A typical song for the techno playlist is:
 <i>Things we might have said - Reinier Zonneveld</i>
 
 This is a typical techno song with a strong beat and repetitive nature. 
+
+<b>Research Question</b>
+
+Can we capture the differences between disco and techno music computationally, and if so, what are those differences?
 
 ***
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1INPlxujcga9tSwvSF6jIw?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
@@ -124,9 +128,10 @@ grid.arrange(tempogram_alive, tempogram_mistreated, tempo_boxplot)
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/55FBE7EvGMTcLoVdqGstSX?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
+
 <b>'Stayin' Alive' Tempo Analysis</b>
 
-On the left, the first figure you see is the cyclic tempogram of the song: Stayin' Alive by the Bee Gees (disco song). I chose this song, because the rythm of this song is the same as the tempo that is used to conduct CPR. Furthermore, Stayin' alive rests on a 'four on the floor' beat, which is a really typical for disco songs ('Disco', 2022).    
+On the left, the first figure you see is the cyclic tempogram of the song: Stayin' Alive by the Bee Gees (disco song). I chose this song, because it is famous for it's rythm. The tempo of this song is the same as the tempo that is used to conduct CPR (ProCPR, 2018). It is often used when training people in CPR to remember the rythm in which they have to perform the chest compressions. Furthermore, Stayin' alive rests on a 'four on the floor' beat, which is a really typical for disco songs ('Disco', 2022).    
 
 As you can see by the horizontal line in the tempogram, the rythm of the song is very stable and does not change during the song, which is typical for disco songs ('Disco', 2022). The BPM is a little bit over 100. This is in line with the website: 'Tunebat', which states that the BPM of Stayin' alive by the Bee Gees is indeed a 104 BPM. 
 
@@ -157,9 +162,9 @@ grid.arrange(histogram_loudness, boxplot_loudness)
 
 ***
 
-Herer, I plotted two different visualizations of the loudness of the disco and techno genre. The first plot is is histogram. The histogram plots the loudness of all the songs in both cathegories. Loudness is always a negative number, and the more negative it is, the 'louder' the song. At first sight, it seems that the techno genre contains much louder songs than the disco genre, because the bars are a lot higher for techno music. 
+Here, I plotted two different visualizations of the loudness of the disco and techno genre. The first plot is is histogram. The histogram plots the loudness of all the songs in both cathegories. Loudness is always a negative number, and the more negative it is, the 'louder' the song. At first sight, it seems that the techno genre contains much louder songs than the disco genre, because the bars are a lot higher for techno music. 
 
-On average though, and taking into account outliers, the loudness does not differ too much between the two genres. This is visible in the boxplot. The median of the loudness of the techno genre is equal to -8 and the median of disco music lies around -7.5. 
+Taking into account outliers though, the loudness does not differ too much between the two genres. This is visible in the boxplot. The median of the loudness of the techno genre is equal to -8 and the median of disco music lies around -7.5. 
 
 The overall difference in loudness between the two genres is not too big, but techno music is a little louder than disco music. Looking at the histogram, we can conclude that even though on average there is not a big difference between the two genres, the loudest songs are all in the techno genre. 
 
@@ -318,7 +323,7 @@ On the left, you can see the chordograms of the disco song: 'Daddy Cool' and the
 
 <b>Daddy Cool</b>
 
-The chordogram for the song 'Daddy Cool' shows clear activity in Cmin, Fmin, Cmaj and Fmaj rows. From 150 seconds till around 170 seconds, there is a vertical yellow band, which implicates little to no activity in all rows. This is explained by the fact that there is some 'halt' in the song, where you hear some background music and you can hear a man talking. That is why the chordogram does not show activity for some particular chords in this part. 
+The chordogram for the song 'Daddy Cool' shows clear activity in Cmin, Fmin, Cmaj and Fmaj rows. From 150 seconds till around 170 seconds, there is a vertical yellow band, which implicates little to no activity in all rows. This is explained by the fact that there is some 'halt' in the song, where you hear some background music and you can hear a man talking, the bridge of the song. There isn't very clear music in this part, which is why the chordogram does not show activity for some particular chords in this part. 
 
 <b>The Aftermath</b>
 
@@ -369,7 +374,7 @@ ssm_survive <- survive %>%
   coord_fixed() +
   scale_fill_viridis_c(guide = "none") +
   theme_classic() +
-  labs(x = "", y = "") + ggtitle('Self Similarity Matrix of Timbre of I Will Survive')
+  labs(x = "", y = "") + ggtitle('SSM I Will Survive')
 perpetual <-
   get_tidy_audio_analysis("1KLMFEi6H0DMVzIz4CYc4Z") %>% # Change URI.
   compmus_align(bars, segments) %>%                     # Change `bars`
@@ -404,7 +409,7 @@ ssm_perpetual <- perpetual %>%
   coord_fixed() +
   scale_fill_viridis_c(guide = "none") +
   theme_classic() +
-  labs(x = "", y = "") + ggtitle('Self Similarity Matrix of Timbre of Perpetual Groove')
+  labs(x = "", y = "") + ggtitle('SSM Perpetual Groove')
 
 
 
@@ -421,7 +426,7 @@ grid.arrange(ssm_survive, ssm_perpetual)
 
 <b>Self Similarity Matrix of 'I Will Survive'</b>
 
-On left you can see the self similarity matrix of the song 'I Will Survive' by Gloria Gaynor. This is a very famous disco song. The dark blue parts of the plot represent similar parts in the song. The diagonal of the self similarity is very dark blue, which makes sense because this is where the self similarity matrix compares the same parts of the song, which of course are very similar. 
+On left you can see the self similarity matrix of the timbre of the song 'I Will Survive' by Gloria Gaynor. This is a very famous disco song. The dark blue parts of the plot represent similar parts in the song. The diagonal of the self similarity is very dark blue, which makes sense because this is where the self similarity matrix compares the same parts of the song, which of course are very similar. 
 
 In the plot, there are some similar, darker chunks. From 40-70 seconds, 120-150 seconds and one from 170 seconds untill the end. These chunks represent the chorus of the song. Since the chorus is always the same, it is expected that these would show up on the self similarity matrix. 
 
@@ -431,7 +436,7 @@ In short, the self similarity matrix clearly shows the verse-chorus structure of
 
 <b>Self Similarity Matrix of 'Perpetual Groove'</b>
 
-The second self similarity matrix is the one of 'Perpetual Groove' by Roog and Leon Benesty. This is a techno song. There is very high similarity at the beginning of the song and at the end. This is because at the beginning and at the end of the song, there is just a very strong, repetitive beat without anything else. 
+The second self similarity matrix is the one of the timbre of the song 'Perpetual Groove' by Roog and Leon Benesty. This is a techno song. There is very high similarity at the beginning of the song and at the end. This is because at the beginning and at the end of the song, there is just a very strong, repetitive beat without anything else. 
 
 There is very low similarity from around 170 till 205 seconds. Here you hear some trumpet-like sounds and a man voice how repeatedly says: 'Don't stop'. This is a buildup to a drop and not very similar to other parts in the song. Then the drop hits around 205 seconds, and the music becomes more similar. After the drop the trumpet sounds stay, but the repetative beat as in the beginning is back. That is why it is pretty similar but not as similar as the beginning and end of the song. This pattern is also visible from around 90 till 120 seconds. 
 
@@ -448,25 +453,15 @@ include_graphics("Screenshot (2).png")
 include_graphics("Screenshot (49).png")
 ```
 
-
-
-
-
-
-
-
-
-
 *** 
 
+I used K-nearest neighbour classification to classify whether a song belonged to the disco genre or the techno genre. The model has a precicion of 0.905 for the disco genre, and 0.947 for the techno genre, which is pretty high. This means that most songs that belong to the disco genre were classified as disco and most techno songs were classified as techno. The first plot shows the output of the K-nearest neighbour model.
 
-I used K-nearest neighbour classification to classify whether a song belonged to the disco genre or the techno genre. My model has a precicion of 0.905 for the disco genre, and 0.947 for the techno genre, which is pretty high. This means that most songs that belong to the disco genre were classified as disco and most techno songs were classified as techno.
-
-I also used decision trees as a classification algorithm. The advantage of decision trees is that it tells you what features played a big part in the classification decision. On the left I have plotted which features were important for classifying a song as either disco or techno. 
+I also used decision trees as a classification algorithm. The advantage of decision trees is that it tells you what features played a big part in the classification decision. In the middle I have plotted which features were important for classifying a song as either disco or techno. 
 As you can see, the most important feature was 'acousticness'. This makes a lot of sense, because techno music is produces by mostly electronic instruments, and is probably the least acoustic musical genre there is. So when a song has high acousticness, the chance is quite high that it is a disco song. 
 
 Valence was also an important feature for decision making. Valence represents the musical positiveness conveyed. This also does not come as a surprise to me, because disco music mostly is very positive and happy music, whereas techno can sometimes be quite 'dark'. Instrumentalness was also an important feature. This makes sense for the same reason as the reason why acousticness was an important feature. 
-The fact that duration was also an important feature can be explained by the fact that techno songs are often very long. This is also visible in the boxplot, which shows that techno music has a longer duration than disco music. 
+The fact that duration was also an important feature can be explained by the fact that techno songs are often very long. This is also visible in the boxplot on the right, which shows that techno music has a longer duration than disco music. 
 
 ### <b>Chroma Features</b> of a disco and techno song
 
@@ -525,9 +520,6 @@ chromagram_disco <- voulez_vous %>%
 grid.arrange(chromagram_disco, chromagram_techno)
 ```
 
-
-
-
 ***
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0ayyT5zbXqlXEQWoa0JggL?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
@@ -535,21 +527,23 @@ grid.arrange(chromagram_disco, chromagram_techno)
 
 <b>Chroma Analysis of 'Voulez-Vous'</b>
 
-The second chromagram you see is the chromagram of the song: 'Voulez-Vous' by ABBA. As you can see, throughout the whole song there is a lot of activity in the B- and E-rows. However, there are some interruptions of this activity, during which the activity in other rows picks up. For example, around 50 seconds, there is less activity in the B-row, and the A- and G- rows light up. This is no coincidence, because this is where the chorus of the song is. This pattern repeats itself (e.g. around 150 seconds), which makes sense, since the chorus also repeats itself. 
+On the left, you can see the chromagram of the song: 'Voulez-Vous' by ABBA. As you can see, throughout the whole song there is a lot of activity in the B- and E-rows. However, there are some interruptions of this activity, during which the activity in other rows picks up. For example, around 50 seconds, there is less activity in the B-row, and the A- and G- rows light up. This is no coincidence, because this is where the chorus of the song is. This pattern repeats itself (e.g. around 150 seconds), which makes sense, since the chorus also repeats itself. 
 
 Another interesting thing to notice in the chromagram are the small bars in the B- and A- row that alternate in activity from around 210 seconds up until the end. This is because from that moment until the end of the song, all you hear is the instrumental music, alternated by a 'Aha' of the singers. The 'Aha' is what explains the activity in the A-row and the instrumental music is denoted by the activity in the B-row. In the end there is also one more chorus, which you can see by the activity in the A- and G-rows. 
 
 <b>Chroma Analysis of 'Things we might have said'</b>
 
-On the left, you can see the chromagram of the song: Things we might have said by Reinier Zonneveld. The most part of the song is a repetative beat, which is represented by the many lines in the D, C# and C column. However, this repetition is interrupted two times (200 seconds and 350 seconds). You can see this in the D and C# column. The repetative beat is interrupted and there is a short buildup to a so called: 'drop'. This is a point in a music track where a sudden change of rhythm or bass line occurs, which is preceded by a build-up section and break ('Drop (music)', 2022). After this interruption, the beat picks up again as you can see by the lines in the chromagram. 
+The second chromagram is of the song: 'Things we might have said' by Reinier Zonneveld. The most part of the song is a repetative beat, which is represented by the many lines in the D, C# and C column. However, this repetition is interrupted two times (200 seconds and 350 seconds). You can see this in the D and C# column. The repetative beat is interrupted and there is a short buildup to a so called: 'drop'. This is a point in a music track where a sudden change of rhythm or bass line occurs, which is preceded by a build-up section and break ('Drop (music)', 2022). After this interruption, the beat picks up again as you can see by the lines in the chromagram. 
 
 When the D and C# column show litte to no activity, the G# and D# columns lights up. This is because in those interruptions there is a woman singing. This is represented in the G# and D# columns of the chromagram. 
 
+### <b>Conclusion</b>: the Differences between Disco and Techno
 
+In this portfolio I examined various different features of the spotify API to look into the differences between disco and techno music. Here I will discuss these features and conclude what the differences are between the two genres.
 
-### Conclusion
+The research question of this portfolio was: Can we capture the differences between disco and techno music computationally, and if so, what are those differences?
 
-In this portfolio I examined various different features of the spotify API to look into the differences between disco and techno music. Here I will discuss these features and conclude what the differences are between the two genres. 
+The answer to that question is: Yes, we can capture the differences between disco and techno music computationally. The differences that I found between the two genres are: 
 
 <b>Speechiness and Danceability</b>
 The danceability of the disco genre was a little bit higher than the danceability of the techno genre. However, the speechiness of the techno genre was higher than the one of the disco genre. This was surprising, because usually techno does not contain a lot of vocals. 
@@ -566,18 +560,21 @@ After analysing self similarity matrices and chordograms of songs of both genres
 <b>Other charecteristics</b>
 After performing classification algorithms, I found some important features that are characteristics for each genre. Acousticness, valence, and instrumentalness is a lot higher in disco music than in techno music. Duration is higher in techno music. 
 
-### References
 
-A Diverity of Sounds in Disco Music.(2004). Retrieved March 30, from http://www.discosavvy.com/diversesounds.html#:~:text=The%20basic%20tempo%20of%20disco,the%20gaps%20between%20the%20beats. 
+### <b>References</b>
+
+A Diverity of Sounds in Disco Music.(2004). Retrieved March 30 2022, from http://www.discosavvy.com/diversesounds.html#:~:text=The%20basic%20tempo%20of%20disco,the%20gaps%20between%20the%20beats. 
 
 Disco. (2022). Retrieved March 23, 2022 from https://en.wikipedia.org/wiki/Disco#:~:text=Disco%20is%20a%20genre%20of,synthesizers%2C%20and%20electric%20rhythm%20guitars.
 
 Drop (music). (2022). Retrieved March 18, 2022 from https://en.wikipedia.org/wiki/Drop_(music)
 
-EDM Song Structure: Turn Your Loop Into A Song! Retrieved March 30, from https://cymatics.fm/blogs/production/edm-song-structure#:~:text=One%20of%20the%20most%20common,B%20would%20be%20the%20drop. 
+EDM Song Structure: Turn Your Loop Into A Song! Retrieved March 30 2022, from https://cymatics.fm/blogs/production/edm-song-structure#:~:text=One%20of%20the%20most%20common,B%20would%20be%20the%20drop. 
 
-Elena's Music Genres in Context. Retrieved March 30, from https://sites.google.com/site/elenasgenres/home/disco-extracts/disci-influences/disco-practitioners/disco-characteristics 
+Elena's Music Genres in Context. Retrieved March 30 2022, from https://sites.google.com/site/elenasgenres/home/disco-extracts/disci-influences/disco-practitioners/disco-characteristics 
 
-Kody, A. (2021, 27 oktober). Using Different Tempos to Make Beats for Different Genres. Izotope. Geraadpleegd op 23 maart 2022, van https://www.izotope.com/en/learn/using-different-tempos-to-make-beats-for-different-genres.html
+Kody, A. (2021, 27 oktober). Using Different Tempos to Make Beats for Different Genres. Izotope. Retrieved March 23 2022, van https://www.izotope.com/en/learn/using-different-tempos-to-make-beats-for-different-genres.html
 
-Techno. (2022). Retrieved March 23, from https://en.wikipedia.org/wiki/Techno
+CPR to Stayin’ Alive beat helps keep proper rate. (2018). Retrieved March 31 2022, from https://www.procpr.org/blog/training/cpr-stayin-alive-song
+
+Techno. (2022). Retrieved March 23 2022, from https://en.wikipedia.org/wiki/Techno
