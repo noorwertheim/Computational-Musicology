@@ -3,6 +3,7 @@ title: "Computational Musicology: Comparing Disco and Techno Music"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
+    self_contained: false
     theme: 
       version: 4
       bootswatch: minty 
