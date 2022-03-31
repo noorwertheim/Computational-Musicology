@@ -41,9 +41,9 @@ A typical song for the techno playlist is:
 This is a typical techno song with a strong beat and repetitive nature. 
 
 ***
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1INPlxujcga9tSwvSF6jIw?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1INPlxujcga9tSwvSF6jIw?utm_source=generator&theme=0" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1SVsb8xrG47T8hNTOFqRIm?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1SVsb8xrG47T8hNTOFqRIm?utm_source=generator&theme=0" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 ### <b>Danceability</b> and <b>Speechiness</b> of the Disco and Techno Genre
 
@@ -114,6 +114,10 @@ tempo_analysis %>%
 
 
 *** 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6pyzBTIjcO2AMkKE6x2Otb?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/55FBE7EvGMTcLoVdqGstSX?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <b>'Stayin' Alive' Tempo Analysis</b>
 
@@ -294,6 +298,13 @@ aftermath %>%
 ```
 
 ***
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3WMbD1OyfKuwWDWMNbPQ4g?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1eRVsFpFd4NfHG2ll5QneP?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+
+
 On the left, you can see the chordograms of the disco song: 'Daddy Cool' and the techno song: 'the Aftermath'.
 
 <b>Daddy Cool</b>
@@ -388,8 +399,9 @@ perpetual %>%
 ```
 
 ***
-On the left, you can see the ceptogram for the song September by Earth, Wind & Fire, a typical disco song. 
-There is a lot of activity in the C02 column. There are some chunks which are more active than others, which represent the chorus. 
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5FM2zyvBsSQtx9HXZ8dFsc?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1KLMFEi6H0DMVzIz4CYc4Z?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <b>Self Similarity Matrix of 'I Will Survive'</b>
 
@@ -499,6 +511,10 @@ voulez_vous %>%
 
 
 ***
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3P87vLHg7L6xGrnxQ5qpGL?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0ayyT5zbXqlXEQWoa0JggL?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <b>Chroma Analysis of 'Things we might have said'</b>
 
