@@ -12,6 +12,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 remotes::install_github("rstudio/bslib")
+library(gridExtra)
 ```
 
 ### Background
@@ -41,7 +42,7 @@ A typical song for the techno playlist is:
 This is a typical techno song with a strong beat and repetitive nature. 
 
 ***
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1INPlxujcga9tSwvSF6jIw?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1INPlxujcga9tSwvSF6jIw?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1SVsb8xrG47T8hNTOFqRIm?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
@@ -55,8 +56,8 @@ disco <- get_playlist_audio_features("", "1INPlxujcga9tSwvSF6jIw")
 techno <- get_playlist_audio_features("", "1SVsb8xrG47T8hNTOFqRIm")
 plot_disco <- ggplot(disco, aes(x=danceability, y=speechiness)) + geom_point(color = "#ADD8E6") + ggtitle('Danceability and speechiness of the Disco Playlist')
 plot_techno <- ggplot(techno, aes(x=danceability, y=speechiness)) + geom_point(color = "pink") + ggtitle('Danceability and speechiness of the Techno Playlist')
-plot_disco 
-plot_techno
+
+grid.arrange(plot_disco, plot_techno)
 ```
 
 
@@ -85,21 +86,23 @@ library(dplyr)
 library(compmus)
 library(plotly)
 stayin_alive <- get_tidy_audio_analysis("6pyzBTIjcO2AMkKE6x2Otb")
-stayin_alive %>%
+tempogram_alive <- stayin_alive %>%
   tempogram(window_size = 8, hop_size = 1, cyclic = TRUE) %>%
   ggplot(aes(x = time, y = bpm, fill = power)) +
   geom_raster() +
   scale_fill_viridis_c(guide = "none") +
   labs(x = "Time (s)", y = "Tempo (BPM)") +
-  theme_classic() + scale_fill_viridis_c('tempo')
+  theme_classic() + scale_fill_viridis_c('tempo') + ggtitle('Tempogram of Stayin Alive')
+
 mistreated <- get_tidy_audio_analysis("5JTzJAz1QksP0iqKiL5bbd")
-mistreated %>%
+tempogram_mistreated <- mistreated %>%
   tempogram(window_size = 8, hop_size = 1, cyclic = TRUE) %>%
   ggplot(aes(x = time, y = bpm, fill = power)) +
   geom_raster() +
   scale_fill_viridis_c(guide = "none") +
   labs(x = "Time (s)", y = "Tempo (BPM)") +
-  theme_classic() + scale_fill_viridis_c('tempo')
+  theme_classic() + scale_fill_viridis_c('tempo') + ggtitle('Tempogram of Mistreated')
+
 techno_tempo <- get_playlist_audio_features("", "1SVsb8xrG47T8hNTOFqRIm")
 disco_tempo <- get_playlist_audio_features("", "1INPlxujcga9tSwvSF6jIw")
 tempo_analysis <-
@@ -107,9 +110,11 @@ tempo_analysis <-
     techno_tempo %>% mutate(category = "Techno"),
     disco_tempo %>% mutate(category = "Disco")
   )
-tempo_analysis %>%
+tempo_boxplot <- tempo_analysis %>%
   ggplot(aes(x = category, y = tempo)) +
   geom_boxplot() + ggtitle('Boxplot of the Tempo of Disco and Techno Music')
+
+grid.arrange(tempogram_alive, tempogram_mistreated, tempo_boxplot)
 ```
 
 
@@ -138,13 +143,15 @@ In the boxplot the overall tempo per genre is plotted. This plot confirms the te
 ### <b>Loudness</b> of the Disco and Techno Genre
 
 ```{r, echo=FALSE}
-tempo_analysis %>%
+histogram_loudness <- tempo_analysis %>%
   ggplot(aes(x = loudness)) +
   geom_histogram(binwidth = 0.1) +
   facet_wrap(~category) + ggtitle("Histogram of the Loudness of Disco and Techno Music")
-tempo_analysis %>%
+boxplot_loudness <- tempo_analysis %>%
   ggplot(aes(x = category, y = loudness)) +
   geom_boxplot() + ggtitle('Boxplot of the Loudness of Disco and Techno Music')
+
+grid.arrange(histogram_loudness, boxplot_loudness)
 ```
 
 
@@ -296,7 +303,7 @@ aftermath_plot <- aftermath %>%
   theme_minimal() +
   labs(x = "Time (s)", y = "") + ggtitle('Chordogram of Techno Song: the Aftermath')
 
-subplot(daddy_cool_plot, aftermath_plot)
+grid.arrange(daddy_cool_plot, aftermath_plot)
 ```
 
 ***
@@ -347,7 +354,7 @@ survive <-
         method = "rms", norm = "euclidean"              # Change summary & norm.
       )
   )
-survive %>%
+ssm_survive <- survive %>%
   compmus_self_similarity(timbre, "euclidean") %>% 
   ggplot(
     aes(
@@ -382,7 +389,7 @@ perpetual <-
         method = "rms", norm = "euclidean"              # Change summary & norm.
       )
   )
-perpetual %>%
+ssm_perpetual <- perpetual %>%
   compmus_self_similarity(timbre, "euclidean") %>% 
   ggplot(
     aes(
@@ -398,6 +405,13 @@ perpetual %>%
   scale_fill_viridis_c(guide = "none") +
   theme_classic() +
   labs(x = "", y = "") + ggtitle('Self Similarity Matrix of Timbre of Perpetual Groove')
+
+
+
+grid.arrange(ssm_survive, ssm_perpetual)
+
+
+
 ```
 
 ***
@@ -477,7 +491,7 @@ techno_chrom <-
 ```
 
 ```{r echo=FALSE}
-techno_chrom %>%
+chromagram_techno <- techno_chrom %>%
   mutate(pitches = map(pitches, compmus_normalise, "euclidean")) %>%
   compmus_gather_chroma() %>% 
   ggplot(
@@ -492,7 +506,7 @@ techno_chrom %>%
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   theme_minimal() +
   scale_fill_viridis_c() + ggtitle('Chromagram of the Techno Song: Things We Might Have Said')
-voulez_vous %>%
+chromagram_disco <- voulez_vous %>%
   mutate(pitches = map(pitches, compmus_normalise, "euclidean")) %>%
   compmus_gather_chroma() %>% 
   ggplot(
@@ -507,16 +521,23 @@ voulez_vous %>%
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   theme_minimal() +
   scale_fill_viridis_c() + ggtitle('Chordogram of the Disco Song: Voulez-Vous')
+
+grid.arrange(chromagram_disco, chromagram_techno)
 ```
 
 
 
 
 ***
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0ayyT5zbXqlXEQWoa0JggL?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3P87vLHg7L6xGrnxQ5qpGL?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0ayyT5zbXqlXEQWoa0JggL?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<b>Chroma Analysis of 'Voulez-Vous'</b>
+
+The second chromagram you see is the chromagram of the song: 'Voulez-Vous' by ABBA. As you can see, throughout the whole song there is a lot of activity in the B- and E-rows. However, there are some interruptions of this activity, during which the activity in other rows picks up. For example, around 50 seconds, there is less activity in the B-row, and the A- and G- rows light up. This is no coincidence, because this is where the chorus of the song is. This pattern repeats itself (e.g. around 150 seconds), which makes sense, since the chorus also repeats itself. 
+
+Another interesting thing to notice in the chromagram are the small bars in the B- and A- row that alternate in activity from around 210 seconds up until the end. This is because from that moment until the end of the song, all you hear is the instrumental music, alternated by a 'Aha' of the singers. The 'Aha' is what explains the activity in the A-row and the instrumental music is denoted by the activity in the B-row. In the end there is also one more chorus, which you can see by the activity in the A- and G-rows. 
 
 <b>Chroma Analysis of 'Things we might have said'</b>
 
@@ -524,11 +545,7 @@ On the left, you can see the chromagram of the song: Things we might have said b
 
 When the D and C# column show litte to no activity, the G# and D# columns lights up. This is because in those interruptions there is a woman singing. This is represented in the G# and D# columns of the chromagram. 
 
-<b>Chroma Analysis of 'Voulez-Vous'</b>
 
-The second chromagram you see is the chromagram of the song: 'Voulez-Vous' by ABBA. As you can see, throughout the whole song there is a lot of activity in the B- and E-rows. However, there are some interruptions of this activity, during which the activity in other rows picks up. For example, around 50 seconds, there is less activity in the B-row, and the A- and G- rows light up. This is no coincidence, because this is where the chorus of the song is. This pattern repeats itself (e.g. around 150 seconds), which makes sense, since the chorus also repeats itself. 
-
-Another interesting thing to notice in the chromagram are the small bars in the B- and A- row that alternate in activity from around 210 seconds up until the end. This is because from that moment until the end of the song, all you hear is the instrumental music, alternated by a 'Aha' of the singers. The 'Aha' is what explains the activity in the A-row and the instrumental music is denoted by the activity in the B-row. In the end there is also one more chorus, which you can see by the activity in the A- and G-rows. 
 
 ### Conclusion
 
