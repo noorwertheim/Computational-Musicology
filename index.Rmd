@@ -41,9 +41,9 @@ A typical song for the techno playlist is:
 This is a typical techno song with a strong beat and repetitive nature. 
 
 ***
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1INPlxujcga9tSwvSF6jIw?utm_source=generator&theme=0" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1INPlxujcga9tSwvSF6jIw?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1SVsb8xrG47T8hNTOFqRIm?utm_source=generator&theme=0" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1SVsb8xrG47T8hNTOFqRIm?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 ### <b>Danceability</b> and <b>Speechiness</b> of the Disco and Techno Genre
 
@@ -115,9 +115,9 @@ tempo_analysis %>%
 
 *** 
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6pyzBTIjcO2AMkKE6x2Otb?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6pyzBTIjcO2AMkKE6x2Otb?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/55FBE7EvGMTcLoVdqGstSX?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/55FBE7EvGMTcLoVdqGstSX?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <b>'Stayin' Alive' Tempo Analysis</b>
 
@@ -157,7 +157,7 @@ On average though, and taking into account outliers, the loudness does not diffe
 The overall difference in loudness between the two genres is not too big, but techno music is a little louder than disco music. Looking at the histogram, we can conclude that even though on average there is not a big difference between the two genres, the loudest songs are all in the techno genre. 
 
 
-### Chordogram
+### <b>Chordogram</b> of Disco and Techno Song
 
 ```{r, echo=FALSE}
 library(tidyverse)
@@ -257,7 +257,7 @@ daddy_cool <-
         method = "mean", norm = "manhattan"
       )
   )
-daddy_cool %>% 
+daddy_cool_plot <- daddy_cool %>% 
   compmus_match_pitch_template(
     key_templates,         # Change to chord_templates if descired
     method = "euclidean",  # Try different distance metrics
@@ -282,7 +282,7 @@ aftermath <-
         method = "mean", norm = "manhattan"
       )
   )
-aftermath %>% 
+aftermath_plot <- aftermath %>% 
   compmus_match_pitch_template(
     key_templates,         # Change to chord_templates if descired
     method = "euclidean",  # Try different distance metrics
@@ -295,13 +295,15 @@ aftermath %>%
   scale_fill_viridis_c(guide = "none") +
   theme_minimal() +
   labs(x = "Time (s)", y = "") + ggtitle('Chordogram of Techno Song: the Aftermath')
+
+subplot(daddy_cool_plot, aftermath_plot)
 ```
 
 ***
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3WMbD1OyfKuwWDWMNbPQ4g?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3WMbD1OyfKuwWDWMNbPQ4g?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1eRVsFpFd4NfHG2ll5QneP?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1eRVsFpFd4NfHG2ll5QneP?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 
 
@@ -399,9 +401,9 @@ perpetual %>%
 ```
 
 ***
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5FM2zyvBsSQtx9HXZ8dFsc?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5FM2zyvBsSQtx9HXZ8dFsc?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1KLMFEi6H0DMVzIz4CYc4Z?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1KLMFEi6H0DMVzIz4CYc4Z?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <b>Self Similarity Matrix of 'I Will Survive'</b>
 
@@ -421,7 +423,7 @@ There is very low similarity from around 170 till 205 seconds. Here you hear som
 
 the self similarity matrix shows a strong ABAB structure. The A parts are the intro (which is very similar), and the buildups (which have very low similarity). The B parts are the drops, which follow the buildup pieces from 90-120 seconds and 170-205 seconds. This is a very typical structure for techno music. 
 
-### Dendograms
+### Important <b>Features</b> for <b>Classification</b> of Disco and Techno Songs
 
 
 ```{r, figures-side, fig.show="hold", out.width="33%", echo=FALSE}
@@ -452,7 +454,7 @@ As you can see, the most important feature was 'acousticness'. This makes a lot 
 Valence was also an important feature for decision making. Valence represents the musical positiveness conveyed. This also does not come as a surprise to me, because disco music mostly is very positive and happy music, whereas techno can sometimes be quite 'dark'. Instrumentalness was also an important feature. This makes sense for the same reason as the reason why acousticness was an important feature. 
 The fact that duration was also an important feature can be explained by the fact that techno songs are often very long. This is also visible in the boxplot, which shows that techno music has a longer duration than disco music. 
 
-### Chroma Analysis of a disco and techno song
+### <b>Chroma Features</b> of a disco and techno song
 
 ```{r, eval = FALSE, echo=FALSE}
 remotes::install_github('jaburgoyne/compmus')
@@ -512,9 +514,9 @@ voulez_vous %>%
 
 ***
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3P87vLHg7L6xGrnxQ5qpGL?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3P87vLHg7L6xGrnxQ5qpGL?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0ayyT5zbXqlXEQWoa0JggL?utm_source=generator" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0ayyT5zbXqlXEQWoa0JggL?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <b>Chroma Analysis of 'Things we might have said'</b>
 
