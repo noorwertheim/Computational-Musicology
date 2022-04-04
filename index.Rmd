@@ -1,5 +1,6 @@
 ---
 title: "Computational Musicology: Comparing Disco and Techno Music"
+subtitle: 'Noor Wertheim - 12361402'
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
@@ -13,6 +14,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 remotes::install_github("rstudio/bslib")
 library(gridExtra)
+library(plotly)
 ```
 
 ### <b>Introduction</b>: Disco and Techno Music
@@ -59,15 +61,18 @@ library(plotly)
 disco <- get_playlist_audio_features("", "1INPlxujcga9tSwvSF6jIw")
 techno <- get_playlist_audio_features("", "1SVsb8xrG47T8hNTOFqRIm")
 plot_disco <- ggplot(disco, aes(x=danceability, y=speechiness)) + geom_point(color = "#ADD8E6") + ggtitle('Danceability and speechiness of the Disco Playlist')
-plot_techno <- ggplot(techno, aes(x=danceability, y=speechiness)) + geom_point(color = "pink") + ggtitle('Danceability and speechiness of the Techno Playlist')
+plot_techno <- ggplot(techno, aes(x=danceability, y=speechiness)) + geom_point(color = "pink") + ggtitle('Danceability and speechiness of Disco and Techno')
 
-grid.arrange(plot_disco, plot_techno)
+plot_disco <- ggplotly(plot_disco)
+plot_techno <- ggplotly(plot_techno)
+
+subplot(plot_disco, plot_techno)
 ```
 
 
 
 *** 
-Here, the speechiness is plotted against the danceability of all songs in the disco and the techno playlist. 
+Here, the speechiness is plotted against the danceability of all songs in the disco and the techno playlist. The left plot is of the disco playlist and the right is the techno playlist. 
 
 <b>Danceability</b>
 
@@ -116,9 +121,14 @@ tempo_analysis <-
   )
 tempo_boxplot <- tempo_analysis %>%
   ggplot(aes(x = category, y = tempo)) +
-  geom_boxplot() + ggtitle('Boxplot of the Tempo of Disco and Techno Music')
+  geom_boxplot() + ggtitle('The Tempo of Disco and Techno Music')
 
-grid.arrange(tempogram_alive, tempogram_mistreated, tempo_boxplot)
+tempogram_alive <- ggplotly(tempogram_alive)
+tempogram_mistreated <- ggplotly(tempogram_mistreated)
+tempogram_boxplot <- ggplotly(tempo_boxplot)
+
+
+subplot(tempogram_alive, tempogram_mistreated, tempogram_boxplot)
 ```
 
 
@@ -143,7 +153,7 @@ The beat of the techno song is a little faster than the beat of the disco song, 
 
 <b>General Tempo Analysis</b>
 
-In the boxplot the overall tempo per genre is plotted. This plot confirms the tempo analysis of the two individual songs, in the sense that techno songs overall have a higher tempo than disco songs. The median of the tempo of disco music lies at 120 BMP, whereas the median of techno lies around 128 BMP.
+In the boxplot on the right, the overall tempo per genre is plotted. This plot confirms the tempo analysis of the two individual songs, in the sense that techno songs overall have a higher tempo than disco songs. The median of the tempo of disco music lies at 120 BMP, whereas the median of techno lies around 128 BMP.
 
 ### <b>Loudness</b> of the Disco and Techno Genre
 
@@ -154,9 +164,12 @@ histogram_loudness <- tempo_analysis %>%
   facet_wrap(~category) + ggtitle("Histogram of the Loudness of Disco and Techno Music")
 boxplot_loudness <- tempo_analysis %>%
   ggplot(aes(x = category, y = loudness)) +
-  geom_boxplot() + ggtitle('Boxplot of the Loudness of Disco and Techno Music')
+  geom_boxplot() + ggtitle('Loudness of Disco and Techno Music')
 
-grid.arrange(histogram_loudness, boxplot_loudness)
+histogram_loudness <- ggplotly(histogram_loudness)
+boxplot_loudness <- ggplotly(boxplot_loudness)
+
+subplot(histogram_loudness, boxplot_loudness)
 ```
 
 
@@ -164,7 +177,7 @@ grid.arrange(histogram_loudness, boxplot_loudness)
 
 Here, I plotted two different visualizations of the loudness of the disco and techno genre. The first plot is is histogram. The histogram plots the loudness of all the songs in both cathegories. Loudness is always a negative number, and the more negative it is, the 'louder' the song. At first sight, it seems that the techno genre contains much louder songs than the disco genre, because the bars are a lot higher for techno music. 
 
-Taking into account outliers though, the loudness does not differ too much between the two genres. This is visible in the boxplot. The median of the loudness of the techno genre is equal to -8 and the median of disco music lies around -7.5. 
+Taking into account outliers though, the loudness does not differ too much between the two genres. This is visible in the boxplot on the right. The median of the loudness of the techno genre is equal to -8 and the median of disco music lies around -7.5. 
 
 The overall difference in loudness between the two genres is not too big, but techno music is a little louder than disco music. Looking at the histogram, we can conclude that even though on average there is not a big difference between the two genres, the loudest songs are all in the techno genre. 
 
@@ -306,9 +319,13 @@ aftermath_plot <- aftermath %>%
   geom_tile() +
   scale_fill_viridis_c(guide = "none") +
   theme_minimal() +
-  labs(x = "Time (s)", y = "") + ggtitle('Chordogram of Techno Song: the Aftermath')
+  labs(x = "Time (s)", y = "") + ggtitle('Chordograms of Disco and Techno Song')
 
-grid.arrange(daddy_cool_plot, aftermath_plot)
+daddy_cool_plot <- ggplotly(daddy_cool_plot)
+aftermath_plot <- ggplotly(aftermath_plot)
+
+
+subplot(daddy_cool_plot, aftermath_plot)
 ```
 
 ***
@@ -319,7 +336,7 @@ grid.arrange(daddy_cool_plot, aftermath_plot)
 
 
 
-On the left, you can see the chordograms of the disco song: 'Daddy Cool' and the techno song: 'the Aftermath'.
+On the left, you can see the chordogram of the disco song: 'Daddy Cool'. The right chordogram is of the the techno song: 'the Aftermath'.
 
 <b>Daddy Cool</b>
 
@@ -409,11 +426,13 @@ ssm_perpetual <- perpetual %>%
   coord_fixed() +
   scale_fill_viridis_c(guide = "none") +
   theme_classic() +
-  labs(x = "", y = "") + ggtitle('SSM Perpetual Groove')
+  labs(x = "", y = "") + ggtitle('Self Similarity Matrices of Disco and Techno Song')
+
+ssm_survive <- ggplotly(ssm_survive)
+ssm_perpetual <- ggplotly(ssm_perpetual)
 
 
-
-grid.arrange(ssm_survive, ssm_perpetual)
+subplot(ssm_survive, ssm_perpetual)
 
 
 
@@ -436,7 +455,7 @@ In short, the self similarity matrix clearly shows the verse-chorus structure of
 
 <b>Self Similarity Matrix of 'Perpetual Groove'</b>
 
-The second self similarity matrix is the one of the timbre of the song 'Perpetual Groove' by Roog and Leon Benesty. This is a techno song. There is very high similarity at the beginning of the song and at the end. This is because at the beginning and at the end of the song, there is just a very strong, repetitive beat without anything else. 
+The right self similarity matrix is the one of the timbre of the song 'Perpetual Groove' by Roog and Leon Benesty. This is a techno song. There is very high similarity at the beginning of the song and at the end. This is because at the beginning and at the end of the song, there is just a very strong, repetitive beat without anything else. 
 
 There is very low similarity from around 170 till 205 seconds. Here you hear some trumpet-like sounds and a man voice how repeatedly says: 'Don't stop'. This is a buildup to a drop and not very similar to other parts in the song. Then the drop hits around 205 seconds, and the music becomes more similar. After the drop the trumpet sounds stay, but the repetative beat as in the beginning is back. That is why it is pretty similar but not as similar as the beginning and end of the song. This pattern is also visible from around 90 till 120 seconds. 
 
@@ -515,9 +534,12 @@ chromagram_disco <- voulez_vous %>%
   geom_tile() +
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   theme_minimal() +
-  scale_fill_viridis_c() + ggtitle('Chordogram of the Disco Song: Voulez-Vous')
+  scale_fill_viridis_c() + ggtitle('Chordograms of a Disco and Techno Song')
 
-grid.arrange(chromagram_disco, chromagram_techno)
+
+chromagram_disco <- ggplotly(chromagram_disco)
+chromagram_techno <- ggplotly(chromagram_techno)
+subplot(chromagram_disco, chromagram_techno)
 ```
 
 ***
@@ -533,7 +555,7 @@ Another interesting thing to notice in the chromagram are the small bars in the 
 
 <b>Chroma Analysis of 'Things we might have said'</b>
 
-The second chromagram is of the song: 'Things we might have said' by Reinier Zonneveld. The most part of the song is a repetative beat, which is represented by the many lines in the D, C# and C column. However, this repetition is interrupted two times (200 seconds and 350 seconds). You can see this in the D and C# column. The repetative beat is interrupted and there is a short buildup to a so called: 'drop'. This is a point in a music track where a sudden change of rhythm or bass line occurs, which is preceded by a build-up section and break ('Drop (music)', 2022). After this interruption, the beat picks up again as you can see by the lines in the chromagram. 
+The right chromagram is of the song: 'Things we might have said' by Reinier Zonneveld. The most part of the song is a repetative beat, which is represented by the many lines in the D, C# and C column. However, this repetition is interrupted two times (200 seconds and 350 seconds). You can see this in the D and C# column. The repetative beat is interrupted and there is a short buildup to a so called: 'drop'. This is a point in a music track where a sudden change of rhythm or bass line occurs, which is preceded by a build-up section and break ('Drop (music)', 2022). After this interruption, the beat picks up again as you can see by the lines in the chromagram. 
 
 When the D and C# column show litte to no activity, the G# and D# columns lights up. This is because in those interruptions there is a woman singing. This is represented in the G# and D# columns of the chromagram. 
 
